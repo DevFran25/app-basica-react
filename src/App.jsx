@@ -1,10 +1,5 @@
-import { BrowserRouter } from "react-router-dom";
-import AppRouter from "./routes/AppRouter";
-
 export default function App() {
   return (
-    <BrowserRouter>
-      <AppRouter />
-    </BrowserRouter>
+    <h1 className="text-3xl font-bold text-red-500">Tailwind funcionando 🎉</h1>
   );
 }
