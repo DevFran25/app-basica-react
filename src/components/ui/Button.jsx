@@ -5,7 +5,7 @@ export default function Button({
   className = "",
 }) {
   const baseStyles =
-    "w-full py-4 font-bold rounded-xl transition-all duration-200 text-base";
+    "w-full py-3 font-bold rounded-xl transition-all duration-200 text-sm";
   const variants = {
     primary: "bg-orange-500 hover:bg-orange-600 text-white shadow-lg",
     secondary:
