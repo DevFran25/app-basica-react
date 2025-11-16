@@ -17,6 +17,7 @@ import {
 import Header from "@/components/layout/Header";
 import DashboardCard from "@/components/ui/DashboardCard";
 
+
 export default function Dashboard() {
   const [activeRoute, setActiveRoute] = useState("home");
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -26,10 +27,10 @@ export default function Dashboard() {
 
   const CalendarioElectoral = () => {
     const items = [
-      { icon: Calendar, text: "Elecciones", badge: "¡NUEVO!", route: "/Calendario-Electoral" },
-      { icon: FileText, text: "Inscripción de candidatos",  route: "/Calendario-Electoral" },
-      { icon: Calendar, text: "Plazos importantes",  route: "/Calendario-Electoral" },
-      { icon: InfoIcon, text: "Guía del Lector",  route: "/Calendario-Electoral" },
+      { icon: Calendar, text: "Elecciones", badge: "¡NUEVO!", route: "/calendario-electoral" },
+      { icon: FileText, text: "Inscripción de candidatos",  route: "/calendario-electoral" },
+      { icon: Calendar, text: "Plazos importantes",  route: "/calendario-electoral" },
+      { icon: InfoIcon, text: "Guía del Lector",  route: "/guia-elector" },
     ];
 
     return (

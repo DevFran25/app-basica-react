@@ -3,6 +3,7 @@ import { UserCheck, BookOpen, Users, Timer } from "lucide-react";
 import Sidebar from "@/components/layout/Sidebar";
 import Header from "@/components/layout/Header";
 
+
 export default function CalendarioElectoralPage() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
