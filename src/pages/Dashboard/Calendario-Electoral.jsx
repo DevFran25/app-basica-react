@@ -50,7 +50,7 @@ export default function CalendarioElectoralPage() {
   ];
 
   return (
-    <div className="flex min-h-screen bg-linear-to-br from-blue-200 via-blue-300 to-cyan-200">
+     <div className="flex min-h-screen bg-[#C4D2E0]">
 
       {/* Sidebar */}
       <div
@@ -63,7 +63,7 @@ export default function CalendarioElectoralPage() {
 
       {/* Main */}
       <main className="flex-1 p-4 md:p-6 flex justify-center">
-        <div className="bg-white w-full max-w-3xl rounded-2xl shadow-lg p-5">
+        <div className="bg-white w-full max-w-5xl rounded-2xl shadow-lg p-5">
 
           {/* Header - ahora ya NO tiene botón duplicado */}
           <Header title="Calendario Electoral" />

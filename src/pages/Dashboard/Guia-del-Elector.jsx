@@ -25,7 +25,7 @@ export default function GuiaLectorPage() {
   const [openFAQ, setOpenFAQ] = useState(null);
 
   return (
-    <div className="flex min-h-screen bg-linear-to-br from-blue-200 via-blue-300 to-cyan-200">
+     <div className="flex min-h-screen bg-[#C4D2E0]">
 
       {/* Sidebar */}
       <div

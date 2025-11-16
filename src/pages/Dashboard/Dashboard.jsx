@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "@/components/layout/Sidebar";
+import { ChevronRight } from "lucide-react";
 import {
   Calendar,
   FileText,
@@ -17,7 +18,6 @@ import {
 import Header from "@/components/layout/Header";
 import DashboardCard from "@/components/ui/DashboardCard";
 
-
 export default function Dashboard() {
   const [activeRoute, setActiveRoute] = useState("home");
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -27,14 +27,14 @@ export default function Dashboard() {
 
   const CalendarioElectoral = () => {
     const items = [
-      { icon: Calendar, text: "Elecciones", badge: "¡NUEVO!", route: "/calendario-electoral" },
-      { icon: FileText, text: "Inscripción de candidatos",  route: "/calendario-electoral" },
-      { icon: Calendar, text: "Plazos importantes",  route: "/calendario-electoral" },
-      { icon: InfoIcon, text: "Guía del Lector",  route: "/guia-elector" },
+      { icon: Calendar, text: "Elecciones", badge: "¡NUEVO!", route: "/Calendario-Electoral" },
+      { icon: FileText, text: "Inscripción de candidatos",  route: "/Calendario-Electoral" },
+      { icon: Calendar, text: "Plazos importantes",  route: "/Calendario-Electoral" },
+      { icon: InfoIcon, text: "Guía del Lector",  route: "/Guia-del-Elector" },
     ];
 
     return (
-    <DashboardCard title="Calendario Electoral" bg="#3BB9CE">
+    <DashboardCard   title={<span className="text-white">Calendario Electoral</span>}  bg="#3BB9CE">
       <div className="space-y-1.5">
         {items.map((item, i) => (
           <div
@@ -60,27 +60,48 @@ export default function Dashboard() {
     );
   };
 
-  const MiLugarVotacion = () => (
-    <DashboardCard title="Mi Lugar de Votación">
-      <div className="bg-[#115691] rounded-lg p-3 flex items-start space-x-3 mb-2 text-sm">
-        <MapPin size={20} className="text-blue-300 shrink-0" />
-        <div>
-          <p className="font-semibold mb-1">Dirección:</p>
-          <p>Av. José Balta 123</p>
-        </div>
+
+const MiLugarVotacion = () => (
+  <DashboardCard
+  >
+    {/* Contenedor del título + botón */}
+    <div className="flex items-center justify-between mb-3">
+      <h3 className="font-semibold text-lg">Mi Lugar de Votación</h3>
+      <button
+        onClick={() => navigate("/lugar-de-votacion")}
+        className="bg-white text-blue-900 py-1 px-2 rounded-lg flex items-center justify-center font-semibold hover:bg-gray-100 transition w-fit"
+      >
+        <ChevronRight size={18} />
+      </button>
+    </div>
+
+    <div className="bg-[#115691] rounded-lg p-3 flex items-start space-x-3 mb-2 text-sm">
+      <MapPin size={20} className="text-blue-300 shrink-0" />
+      <div>
+        <p className="font-semibold mb-1">Dirección:</p>
+        <p>Av. José Balta 123</p>
       </div>
-      <div className="space-y-1.5">
-        <div className="bg-[#115691] rounded-lg flex items-center justify-between px-3 py-2 text-sm">
-          <span>• Número de Mesa</span>
-          <button className="bg-[#003366] text-white px-2 py-1 rounded font-semibold hover:bg-blue-800 transition-colors">Ver mapa</button>
-        </div>
-        <div className="bg-[#115691] rounded-lg flex items-center justify-between px-3 py-2 text-sm">
-          <span>• Horarios</span>
-          <button className="bg-white text-blue-900 px-2 py-1 rounded font-semibold hover:bg-gray-100 transition-colors">Descargar</button>
-        </div>
+    </div>
+
+    <div className="space-y-1.5">
+      <div className="bg-[#115691] rounded-lg flex items-center justify-between px-3 py-2 text-sm">
+        <span>• Número de Mesa</span>
+        <button className="bg-[#003366] text-white px-2 py-1 rounded font-semibold hover:bg-blue-800 transition-colors">
+          Ver mapa
+        </button>
       </div>
-    </DashboardCard>
-  );
+
+      <div className="bg-[#115691] rounded-lg flex items-center justify-between px-3 py-2 text-sm">
+        <span>• Horarios</span>
+        <button className="bg-white text-blue-900 px-2 py-1 rounded font-semibold hover:bg-gray-100 transition-colors">
+          Descargar
+        </button>
+      </div>
+    </div>
+  </DashboardCard>
+);
+
+
 
   const CandidatosAgrupaciones = () => {
     const sections = [
@@ -91,7 +112,7 @@ export default function Dashboard() {
     ];
 
     return (
-      <DashboardCard title="Candidatos y Agrupaciones" bg="#89373B">
+      <DashboardCard   title={<span className="text-white">Candidatos y Agrupaciones</span>}  bg="#89373B">
         <div className="space-y-1.5">
           {sections.map((s, i) => (
             <button key={i} className="w-full flex items-center space-x-2 text-sm bg-[#89373B] rounded-lg p-2">
@@ -114,7 +135,7 @@ export default function Dashboard() {
     ];
 
     return (
-      <DashboardCard title="Noticias Verificadas">
+      <DashboardCard   title={<span className="text-white">Noticias Verificadas</span>}  bg="#003366">
         <div className="space-y-1.5">
           {news.map((item, i) => (
             <button key={i} className="w-full bg-white rounded-lg p-2 flex items-center justify-between text-sm">
@@ -134,7 +155,8 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="flex min-h-screen bg-linear-to-br from-blue-200 via-blue-300 to-cyan-200">
+    <div className="flex min-h-screen bg-[#C4D2E0]">
+
       <div className={`fixed inset-y-0 left-0 z-20 transition-transform transform ${sidebarOpen ? "translate-x-0" : "-translate-x-full"} md:translate-x-0`}>
         <Sidebar activeRoute={activeRoute} onNavigate={handleNavigate} className="h-full w-44" />
       </div>

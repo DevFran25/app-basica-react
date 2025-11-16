@@ -20,27 +20,34 @@ export default function Home() {
         py-8 sm:py-12
         "
       >
-        <Card>
-          <Logo />
+  <Card>
+  <Logo />
 
-          <h1 className="text-2xl sm:text-3xl font-bold text-center text-blue-900 mb-2">
-            Bienvenido a VotApp
-          </h1>
-          <p className="text-center text-gray-600 mb-6 sm:mb-8 text-sm sm:text-base">
-            Tu voto informado y seguro
-          </p>
+      <h1 className="text-2xl sm:text-3xl font-bold text-center text-blue-900 mb-2">
+        Bienvenido a VotApp
+      </h1>
+      <p className="text-center text-gray-600 mb-6 sm:mb-8 text-sm sm:text-base">
+        Tu voto informado y seguro
+      </p>
 
-          <Button
-            variant="primary"
-            onClick={() => navigate("/login")} // Aquí se agrega la navegación
-          >
-            Ingresar con DNI
-          </Button>
+      <div className="flex flex-col gap-3 sm:gap-4">
+        <Button variant="primary" onClick={() => navigate("/login")}>
+          Ingresar con DNI
+        </Button>
 
-          <Button variant="secondary" className="mt-3 sm:mt-4">
-            Consultar Información General
-          </Button>
-        </Card>
+        <Button variant="secondary" onClick={() => navigate("/otra-ruta")}>
+          Ingreso con Escaneo Facial
+        </Button>
+
+        <Button variant="secondary">
+          Consultar Información General
+        </Button>
+
+        
+      </div>
+</Card>
+
+
       </div>
     </BackgroundImage>
   );
