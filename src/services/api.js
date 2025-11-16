@@ -5,11 +5,11 @@ export const getUsuarios = async () => {
   return res.json();
 };
 
-export const login = async (dni) => {
+export const login = async (dni, fecha) => {
   const res = await fetch(`${BASE_URL}/usuarios/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ dni }),
+    body: JSON.stringify({ dni, fecha }),
   });
   return res.json();
 };

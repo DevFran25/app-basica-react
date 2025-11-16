@@ -17,20 +17,39 @@ export default function Login() {
   const [fecha, setFecha] = useState("");
   const [confirmacion, setConfirmacion] = useState(null);
 
-  const validarDatos = () => {
-    setConfirmacion({
-      nombres: "Francisco Aquino",
-      distrito: "Chiclayo",
-    });
-  };
+    const validarDatos = async () => {
+      if (!dni || !fecha) return;
+
+      try {
+        const res = await login(dni, fecha); 
+        if (res.error) {
+          alert(res.error);
+          setConfirmacion(null);
+          setDatosValidados(false);
+        } else {
+          setConfirmacion({
+            nombres: res.usuario.nombre,
+            distrito: "Chiclayo",
+          });
+          setDatosValidados(true); 
+        }
+      } catch {
+        alert("Error conectando con el servidor");
+        setDatosValidados(false);
+      }
+    };
+
 
   const navigate = useNavigate();
+  
+
 
  const handleLogin = async () => {
   if (!dni) return;
 
   try {
-    const response = await login(dni);
+    const response = await login(dni, fecha);
+
 
     // Si existe error
     if (response.error) {
@@ -71,6 +90,7 @@ export default function Login() {
             placeholder="N° de DNI"
             type="text"
             value={dni}
+            maxLength={8}  
             onChange={(e) => setDni(e.target.value)}
           />
 
@@ -82,20 +102,30 @@ export default function Login() {
             onChange={(e) => setFecha(e.target.value)}
           />
 
-          <Button
-            variant="secondary"
-            className="mt-2"
-            onClick={validarDatos}
-            disabled={!dni || !fecha}
-          >
-            Validar Datos
-          </Button>
+          {/*
+            <Button
+              variant="secondary"
+              className="mt-2"
+              onClick={validarDatos}
+              disabled={!dni || !fecha}
+            >
+              Validar Datos
+            </Button>
+
+            {confirmacion && (
+              <Confirmacion
+                nombres={confirmacion.nombres}
+                distrito={confirmacion.distrito}
+              />
+            )}
+          */}
+
           {confirmacion && (
-            <Confirmacion
-              nombres={confirmacion.nombres}
-              distrito={confirmacion.distrito}
-            />
-          )}
+              <Confirmacion
+                nombres={confirmacion.nombres}
+                distrito={confirmacion.distrito}
+              />
+            )}
 
           <div className="flex gap-3 mt-3">
             <Button
