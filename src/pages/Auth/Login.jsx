@@ -8,6 +8,7 @@ import Confirmacion from "@/components/ui/Confirmacion";
 import { FiCalendar, FiCreditCard } from "react-icons/fi";
 import { FiX } from "react-icons/fi";
 import { FiSave } from "react-icons/fi";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [dni, setDni] = useState("");
@@ -19,6 +20,13 @@ export default function Login() {
       nombres: "Francisco Aquino",
       distrito: "Chiclayo",
     });
+  };
+
+  const navigate = useNavigate();
+
+  const handleLogin = () => {
+    // validación de DNI o credenciales
+    navigate("/dashboard"); // Redirige al Dashboard
   };
 
   return (
@@ -78,7 +86,7 @@ export default function Login() {
 
             <Button
               variant="confirm"
-              onClick={() => console.log("Guardar")}
+              onClick={handleLogin}
               className="flex items-center justify-center gap-2"
             >
               <FiSave /> Confirmar
