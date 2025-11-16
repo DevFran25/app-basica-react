@@ -9,6 +9,8 @@ import { FiCalendar, FiCreditCard } from "react-icons/fi";
 import { FiX } from "react-icons/fi";
 import { FiSave } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
+import { login } from "@/services/api"; 
+
 
 export default function Login() {
   const [dni, setDni] = useState("");
@@ -24,10 +26,33 @@ export default function Login() {
 
   const navigate = useNavigate();
 
-  const handleLogin = () => {
-    // validación de DNI o credenciales
-    navigate("/dashboard"); // Redirige al Dashboard
-  };
+ const handleLogin = async () => {
+  if (!dni) return;
+
+  try {
+    const response = await login(dni);
+
+    // Si existe error
+    if (response.error) {
+      alert(response.error);
+      return;
+    }
+
+    // Guardamos info 
+    setConfirmacion({
+      nombres: response.usuario.nombre,
+      distrito: "Chiclayo", 
+    });
+
+    // Redirigir 
+    setTimeout(() => {
+      navigate("/dashboard");
+    }, 1500);
+  } catch (err) {
+    console.error(err);
+    alert("Error conectando con el servidor");
+  }
+};
 
   return (
     <BackgroundImage>
@@ -84,13 +109,15 @@ export default function Login() {
               <FiX /> Cancelar
             </Button>
 
-            <Button
-              variant="confirm"
-              onClick={handleLogin}
-              className="flex items-center justify-center gap-2"
-            >
-              <FiSave /> Confirmar
-            </Button>
+           <Button
+            variant="confirm"
+            onClick={handleLogin}
+            disabled={!dni || !fecha}
+            className="flex items-center justify-center gap-2"
+          >
+            <FiSave /> Confirmar
+          </Button>
+
           </div>
         </Card>
       </div>
