@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Sidebar from "@/components/layout/Sidebar";
 import {
   Calendar,
@@ -19,32 +20,42 @@ import DashboardCard from "@/components/ui/DashboardCard";
 export default function Dashboard() {
   const [activeRoute, setActiveRoute] = useState("home");
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  
+  const navigate = useNavigate()
   const handleNavigate = (routeId) => setActiveRoute(routeId);
 
   const CalendarioElectoral = () => {
     const items = [
-      { icon: Calendar, text: "Elecciones", badge: "¡NUEVO!" },
-      { icon: FileText, text: "Inscripción de candidatos" },
-      { icon: Calendar, text: "Plazos importantes" },
-      { icon: InfoIcon, text: "Guía del Lector" },
+      { icon: Calendar, text: "Elecciones", badge: "¡NUEVO!", route: "/Calendario-Electoral" },
+      { icon: FileText, text: "Inscripción de candidatos",  route: "/Calendario-Electoral" },
+      { icon: Calendar, text: "Plazos importantes",  route: "/Calendario-Electoral" },
+      { icon: InfoIcon, text: "Guía del Lector",  route: "/Calendario-Electoral" },
     ];
 
     return (
-      <DashboardCard title="Calendario Electoral" bg="#3BB9CE">
-        <div className="space-y-1.5">
-          {items.map((item, i) => (
-            <div key={i} className="bg-white text-gray-800 rounded-lg p-2 flex items-center justify-between text-sm">
-              <div className="flex items-center space-x-2">
-                <item.icon className="text-cyan-500" size={16} />
-                <span>{item.text}</span>
-              </div>
-              {item.badge && (
-                <span className="bg-orange-500 text-white text-xs px-2 py-0.5 rounded-full font-bold">{item.badge}</span>
-              )}
+    <DashboardCard title="Calendario Electoral" bg="#3BB9CE">
+      <div className="space-y-1.5">
+        {items.map((item, i) => (
+          <div
+            key={i}
+            onClick={() => item.route && navigate(item.route)}
+            className={`bg-white text-gray-800 rounded-lg p-2 flex items-center justify-between text-sm cursor-pointer 
+              ${item.route ? "hover:bg-gray-100" : ""}`}
+          >
+            <div className="flex items-center space-x-2">
+              <item.icon className="text-cyan-500" size={16} />
+              <span>{item.text}</span>
             </div>
-          ))}
-        </div>
-      </DashboardCard>
+
+            {item.badge && (
+              <span className="bg-orange-500 text-white text-xs px-2 py-0.5 rounded-full font-bold">
+                {item.badge}
+              </span>
+            )}
+          </div>
+        ))}
+      </div>
+    </DashboardCard>
     );
   };
 
