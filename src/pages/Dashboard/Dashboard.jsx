@@ -22,7 +22,7 @@ export default function Dashboard() {
     <div className="mb-4 w-full flex justify-center">
       <div className="flex flex-col items-center">
         <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-800 mb-2 text-center">{title}</h1>
-        <div className="bg-orange-500 text-white rounded-lg shadow px-5 py-2 w-64 sm:w-80 md:w-[850px] text-center">
+        <div className="bg-orange-500 text-white rounded-lg shadow px-5 py-2 w-64 sm:w-80 md:w-[1000px] text-center">
           <h2 className="text-sm sm:text-base md:text-lg font-bold">
             ¡Localiza tu mesa y planifica el día!
           </h2>
@@ -68,7 +68,7 @@ export default function Dashboard() {
   const MiLugarVotacion = () => (
     <Card title="Mi Lugar de Votación">
       <div className="bg-[#115691] rounded-lg p-3 flex items-start space-x-3 mb-2 text-sm">
-        <MapPin size={20} className="text-blue-300 flex-shrink-0" />
+        <MapPin size={20} className="text-blue-300 shrink-0" />
         <div>
           <p className="font-semibold mb-1">Dirección:</p>
           <p>Av. José Balta 123</p>
@@ -139,7 +139,7 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="flex min-h-screen bg-gradient-to-br from-blue-200 via-blue-300 to-cyan-200">
+    <div className="flex min-h-screen bg-linear-to-br from-blue-200 via-blue-300 to-cyan-200">
       <div className={`fixed inset-y-0 left-0 z-20 transition-transform transform ${sidebarOpen ? "translate-x-0" : "-translate-x-full"} md:translate-x-0`}>
         <Sidebar activeRoute={activeRoute} onNavigate={handleNavigate} className="h-full w-44" />
       </div>
