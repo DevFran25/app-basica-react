@@ -13,30 +13,13 @@ import {
   X,
 } from "lucide-react";
 
+import Header from "@/components/layout/Header";
+import DashboardCard from "@/components/ui/DashboardCard";
+
 export default function Dashboard() {
   const [activeRoute, setActiveRoute] = useState("home");
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const handleNavigate = (routeId) => setActiveRoute(routeId);
-
-  const Header = ({ title }) => (
-    <div className="mb-4 w-full flex justify-center">
-      <div className="flex flex-col items-center">
-        <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-800 mb-2 text-center">{title}</h1>
-        <div className="bg-orange-500 text-white rounded-lg shadow px-5 py-2 w-64 sm:w-80 md:w-[1000px] text-center">
-          <h2 className="text-sm sm:text-base md:text-lg font-bold">
-            ¡Localiza tu mesa y planifica el día!
-          </h2>
-        </div>
-      </div>
-    </div>
-  );
-
-  const Card = ({ title, children, bg = "#003366" }) => (
-    <div className={`rounded-xl p-3 sm:p-4 text-white shadow-md w-full text-sm sm:text-base`} style={{ backgroundColor: bg }}>
-      <h2 className="text-base sm:text-lg font-bold mb-2 text-center">{title}</h2>
-      {children}
-    </div>
-  );
 
   const CalendarioElectoral = () => {
     const items = [
@@ -47,7 +30,7 @@ export default function Dashboard() {
     ];
 
     return (
-      <Card title="Calendario Electoral" bg="#3BB9CE">
+      <DashboardCard title="Calendario Electoral" bg="#3BB9CE">
         <div className="space-y-1.5">
           {items.map((item, i) => (
             <div key={i} className="bg-white text-gray-800 rounded-lg p-2 flex items-center justify-between text-sm">
@@ -61,12 +44,12 @@ export default function Dashboard() {
             </div>
           ))}
         </div>
-      </Card>
+      </DashboardCard>
     );
   };
 
   const MiLugarVotacion = () => (
-    <Card title="Mi Lugar de Votación">
+    <DashboardCard title="Mi Lugar de Votación">
       <div className="bg-[#115691] rounded-lg p-3 flex items-start space-x-3 mb-2 text-sm">
         <MapPin size={20} className="text-blue-300 shrink-0" />
         <div>
@@ -84,7 +67,7 @@ export default function Dashboard() {
           <button className="bg-white text-blue-900 px-2 py-1 rounded font-semibold hover:bg-gray-100 transition-colors">Descargar</button>
         </div>
       </div>
-    </Card>
+    </DashboardCard>
   );
 
   const CandidatosAgrupaciones = () => {
@@ -96,7 +79,7 @@ export default function Dashboard() {
     ];
 
     return (
-      <Card title="Candidatos y Agrupaciones" bg="#89373B">
+      <DashboardCard title="Candidatos y Agrupaciones" bg="#89373B">
         <div className="space-y-1.5">
           {sections.map((s, i) => (
             <button key={i} className="w-full flex items-center space-x-2 text-sm bg-[#89373B] rounded-lg p-2">
@@ -106,7 +89,7 @@ export default function Dashboard() {
           ))}
           <button className="w-full bg-white text-red-900 rounded-lg p-2 text-center text-sm">Comparar</button>
         </div>
-      </Card>
+      </DashboardCard>
     );
   };
 
@@ -119,7 +102,7 @@ export default function Dashboard() {
     ];
 
     return (
-      <Card title="Noticias Verificadas">
+      <DashboardCard title="Noticias Verificadas">
         <div className="space-y-1.5">
           {news.map((item, i) => (
             <button key={i} className="w-full bg-white rounded-lg p-2 flex items-center justify-between text-sm">
@@ -134,7 +117,7 @@ export default function Dashboard() {
             </button>
           ))}
         </div>
-      </Card>
+      </DashboardCard>
     );
   };
 
@@ -153,14 +136,14 @@ export default function Dashboard() {
 
       <main className="flex-1 flex items-center justify-center p-3 md:p-6">
         <div className="bg-white rounded-3xl shadow-lg w-full max-w-5xl p-4 sm:p-5 flex flex-col items-center gap-3">
-        <Header title="INICIO" />
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 w-full">
-          <CalendarioElectoral />
-          <MiLugarVotacion />
-          <CandidatosAgrupaciones />
-          <NoticiasVerificadas />
+          <Header title="INICIO" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 w-full">
+            <CalendarioElectoral />
+            <MiLugarVotacion />
+            <CandidatosAgrupaciones />
+            <NoticiasVerificadas />
+          </div>
         </div>
-      </div>
       </main>
     </div>
   );
