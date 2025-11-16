@@ -8,19 +8,21 @@ import {
   Bell,
   Archive,
   MapPin,
+  InfoIcon,
+  Menu,
+  X,
 } from "lucide-react";
 
 export default function Dashboard() {
   const [activeRoute, setActiveRoute] = useState("home");
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const handleNavigate = (routeId) => setActiveRoute(routeId);
 
   const Header = ({ title }) => (
     <div className="mb-4 w-full flex justify-center">
       <div className="flex flex-col items-center">
-        <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-800 mb-2 text-center">
-          {title}
-        </h1>
-        <div className="bg-orange-500 text-white rounded-lg shadow-md px-6 py-3 w-72 sm:w-96 md:w-[1100px] text-center">
+        <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-800 mb-2 text-center">{title}</h1>
+        <div className="bg-orange-500 text-white rounded-lg shadow px-5 py-2 w-64 sm:w-80 md:w-[850px] text-center">
           <h2 className="text-sm sm:text-base md:text-lg font-bold">
             ¡Localiza tu mesa y planifica el día!
           </h2>
@@ -29,159 +31,137 @@ export default function Dashboard() {
     </div>
   );
 
+  const Card = ({ title, children, bg = "#003366" }) => (
+    <div className={`rounded-xl p-3 sm:p-4 text-white shadow-md w-full text-sm sm:text-base`} style={{ backgroundColor: bg }}>
+      <h2 className="text-base sm:text-lg font-bold mb-2 text-center">{title}</h2>
+      {children}
+    </div>
+  );
+
   const CalendarioElectoral = () => {
     const items = [
       { icon: Calendar, text: "Elecciones", badge: "¡NUEVO!" },
-      { icon: FileText, text: "Inscripción de candidatos", badge: null },
-      { icon: Calendar, text: "Plazos importantes", badge: null },
+      { icon: FileText, text: "Inscripción de candidatos" },
+      { icon: Calendar, text: "Plazos importantes" },
+      { icon: InfoIcon, text: "Guía del Lector" },
     ];
 
     return (
-      <div className="bg-cyan-400 rounded-xl p-3 sm:p-4 text-white shadow-md">
-        <h2 className="text-lg sm:text-xl font-bold mb-3 text-center">
-          Calendario Electoral
-        </h2>
+      <Card title="Calendario Electoral" bg="#3BB9CE">
         <div className="space-y-1.5">
-          {items.map((item, index) => (
-            <div
-              key={index}
-              className="bg-white rounded-lg p-2 text-gray-800 flex items-center justify-between hover:shadow-sm transition-shadow cursor-pointer"
-            >
-              <div className="flex items-center space-x-2 sm:space-x-3">
+          {items.map((item, i) => (
+            <div key={i} className="bg-white text-gray-800 rounded-lg p-2 flex items-center justify-between text-sm">
+              <div className="flex items-center space-x-2">
                 <item.icon className="text-cyan-500" size={16} />
-                <span className="font-medium text-xs sm:text-sm">{item.text}</span>
+                <span>{item.text}</span>
               </div>
               {item.badge && (
-                <span className="bg-orange-500 text-white text-xs px-2 py-0.5 rounded-full font-bold">
-                  {item.badge}
-                </span>
+                <span className="bg-orange-500 text-white text-xs px-2 py-0.5 rounded-full font-bold">{item.badge}</span>
               )}
             </div>
           ))}
         </div>
-      </div>
+      </Card>
     );
   };
 
   const MiLugarVotacion = () => (
-    <div className="bg-blue-900 rounded-xl p-3 sm:p-4 text-white shadow-md">
-      <h2 className="text-lg sm:text-xl font-bold mb-3 text-center">
-        Mi Lugar de Votación
-      </h2>
-      <div className="bg-blue-800 rounded-lg p-2 flex items-start space-x-2 mb-2">
-        <MapPin size={24} className="flex-shrink-0 text-blue-300" />
+    <Card title="Mi Lugar de Votación">
+      <div className="bg-[#115691] rounded-lg p-3 flex items-start space-x-3 mb-2 text-sm">
+        <MapPin size={20} className="text-blue-300 flex-shrink-0" />
         <div>
-          <p className="font-semibold text-xs mb-1">Dirección de local</p>
-          <p className="text-xs">Av. José Balta 123</p>
+          <p className="font-semibold mb-1">Dirección:</p>
+          <p>Av. José Balta 123</p>
         </div>
       </div>
-      <div className="space-y-1">
-        <div className="flex items-center justify-between text-xs">
+      <div className="space-y-1.5">
+        <div className="bg-[#115691] rounded-lg flex items-center justify-between px-3 py-2 text-sm">
           <span>• Número de Mesa</span>
-          <button className="bg-blue-700 hover:bg-blue-600 text-white px-2 py-1 rounded text-xs font-semibold transition-colors">
-            Ver en mapa
-          </button>
+          <button className="bg-[#003366] text-white px-2 py-1 rounded font-semibold hover:bg-blue-800 transition-colors">Ver mapa</button>
         </div>
-        <div className="flex items-center justify-between text-xs">
-          <span>• Horarios sugeridos</span>
-          <button className="bg-white text-blue-900 px-2 py-1 rounded text-xs font-semibold hover:bg-gray-100 transition-colors">
-            Descargar offline
-          </button>
+        <div className="bg-[#115691] rounded-lg flex items-center justify-between px-3 py-2 text-sm">
+          <span>• Horarios</span>
+          <button className="bg-white text-blue-900 px-2 py-1 rounded font-semibold hover:bg-gray-100 transition-colors">Descargar</button>
         </div>
       </div>
-    </div>
+    </Card>
   );
 
   const CandidatosAgrupaciones = () => {
     const sections = [
-      { icon: Users, text: "Elecciones Generales" },
-      { icon: FileText, text: "Planes de Gobierno por Sector" },
-      { icon: Search, text: "Buscar Candidatos / Hojas de Vida" },
-      { icon: FileText, text: "Noticias Relacionadas" },
+      { icon: Users, text: "Elecciones" },
+      { icon: FileText, text: "Planes" },
+      { icon: Search, text: "Buscar Candidatos" },
+      { icon: FileText, text: "Noticias" },
     ];
 
     return (
-      <div className="bg-red-900 rounded-xl p-3 sm:p-4 text-white shadow-md">
-        <h2 className="text-lg sm:text-xl font-bold mb-3 text-center">
-          Candidatos y Agrupaciones
-        </h2>
-        <div className="space-y-1">
-          {sections.map((section, index) => (
-            <button
-              key={index}
-              className="w-full bg-red-800 hover:bg-red-700 rounded-lg p-2 text-left flex items-center space-x-2 transition-colors text-xs sm:text-sm"
-            >
-              <section.icon size={16} />
-              <span className="font-medium">{section.text}</span>
+      <Card title="Candidatos y Agrupaciones" bg="#89373B">
+        <div className="space-y-1.5">
+          {sections.map((s, i) => (
+            <button key={i} className="w-full flex items-center space-x-2 text-sm bg-[#89373B] rounded-lg p-2">
+              <s.icon size={16} />
+              <span>{s.text}</span>
             </button>
           ))}
-          <button className="w-full bg-white text-red-900 hover:bg-gray-100 rounded-lg p-2 text-center font-medium text-xs sm:text-sm transition-colors">
-            Comparar Candidatos (hasta 3)
-          </button>
+          <button className="w-full bg-white text-red-900 rounded-lg p-2 text-center text-sm">Comparar</button>
         </div>
-      </div>
+      </Card>
     );
   };
 
   const NoticiasVerificadas = () => {
     const news = [
-      { icon: FileText, text: "Últimas Noticias Oficiales", badge: 3 },
-      { icon: FileText, text: "Comunicados importantes", subtitle: "(ONPE/JNE)" },
-      { icon: Bell, text: "Alertas y Actualizaciones", badge: null },
-      { icon: Archive, text: "Búsqueda de Noticias / Archivo", badge: null },
+      { icon: FileText, text: "Últimas Noticias", badge: 3 },
+      { icon: FileText, text: "Comunicados", subtitle: "(ONPE/JNE)" },
+      { icon: Bell, text: "Alertas" },
+      { icon: Archive, text: "Archivo" },
     ];
 
     return (
-      <div className="bg-blue-900 rounded-xl p-3 sm:p-4 text-white shadow-md">
-        <h2 className="text-lg sm:text-xl font-bold mb-3 text-center">
-          Noticias Verificadas
-        </h2>
-        <div className="space-y-1">
-          {news.map((item, index) => (
-            <button
-              key={index}
-              className="w-full bg-white hover:bg-gray-50 rounded-lg p-2 text-left flex items-center justify-between transition-colors text-xs sm:text-sm"
-            >
-              <div className="flex items-center space-x-1">
-                <item.icon className="text-gray-600" size={16} />
+      <Card title="Noticias Verificadas">
+        <div className="space-y-1.5">
+          {news.map((item, i) => (
+            <button key={i} className="w-full bg-white rounded-lg p-2 flex items-center justify-between text-sm">
+              <div className="flex items-center space-x-2">
+                <item.icon size={16} className="text-gray-600" />
                 <div className="text-gray-800">
-                  <span className="font-medium">{item.text}</span>
-                  {item.subtitle && (
-                    <p className="text-[10px] text-gray-500">{item.subtitle}</p>
-                  )}
+                  <span>{item.text}</span>
+                  {item.subtitle && <p className="text-xs text-gray-500">{item.subtitle}</p>}
                 </div>
               </div>
-              {item.badge && (
-                <span className="bg-orange-500 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">
-                  {item.badge}
-                </span>
-              )}
+              {item.badge && <span className="bg-orange-500 text-white w-5 h-5 rounded-full text-xs flex items-center justify-center">{item.badge}</span>}
             </button>
           ))}
         </div>
-      </div>
+      </Card>
     );
   };
 
-return (
-  <div className="flex h-screen bg-gradient-to-br from-blue-200 via-blue-300 to-cyan-200 overflow-auto">
-    <Sidebar activeRoute={activeRoute} onNavigate={handleNavigate} />
+  return (
+    <div className="flex min-h-screen bg-gradient-to-br from-blue-200 via-blue-300 to-cyan-200">
+      <div className={`fixed inset-y-0 left-0 z-20 transition-transform transform ${sidebarOpen ? "translate-x-0" : "-translate-x-full"} md:translate-x-0`}>
+        <Sidebar activeRoute={activeRoute} onNavigate={handleNavigate} className="h-full w-44" />
+      </div>
 
-    <main className="flex-1 p-4 sm:p-6 md:p-8 flex flex-col items-center gap-4">
-      {/* Card blanco que envuelve todo el contenido */}
-      <div className="bg-white rounded-3xl shadow-xl w-full max-w-6xl p-4 sm:p-6 md:p-8 flex flex-col items-center gap-4">
-        <Header title="Inicio" />
+      <button
+        className="md:hidden fixed top-2 left-2 z-30 bg-white p-1 rounded shadow"
+        onClick={() => setSidebarOpen(!sidebarOpen)}
+      >
+        {sidebarOpen ? <X size={20} /> : <Menu size={20} />}
+      </button>
 
-        {/* Grid de 2 columnas */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
+      <main className="flex-1 flex items-center justify-center p-3 md:p-6">
+        <div className="bg-white rounded-3xl shadow-lg w-full max-w-5xl p-4 sm:p-5 flex flex-col items-center gap-3">
+        <Header title="INICIO" />
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 w-full">
           <CalendarioElectoral />
           <MiLugarVotacion />
           <CandidatosAgrupaciones />
           <NoticiasVerificadas />
         </div>
       </div>
-    </main>
-  </div>
-);
-
+      </main>
+    </div>
+  );
 }

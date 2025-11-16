@@ -58,11 +58,13 @@ export default function Sidebar({ activeRoute = "home" }) {
 
   return (
     <aside
-      className="flex flex-col items-center bg-gradient-to-b from-blue-700 via-blue-800 to-blue-900 
-             rounded-3xl shadow-2xl py-4 sm:py-6
-             w-14 sm:w-16 md:w-20 lg:w-24  
-             min-h-screen transition-all duration-300
-             ml-2 sm:ml-2 md:ml-6 lg:ml-16"
+     className="flex flex-col items-center 
+           bg-[#115691] 
+           rounded-3xl shadow-2xl py-4 sm:py-6
+           w-14 sm:w-16 md:w-20 lg:w-24  
+           min-h-screen transition-all duration-300
+           ml-2 sm:ml-2 md:ml-6 lg:ml-16"
+
     >
       {/* Logo */}
       <div>
