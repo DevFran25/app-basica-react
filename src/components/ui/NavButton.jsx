@@ -1,4 +1,6 @@
-export default function NavButton({ icon: Icon, isActive = false, onClick }) {
+export default function NavButton({ icon: Icon, route, activeRoute, onClick }) {
+  const isActive = activeRoute === route;
+
   return (
     <button
       onClick={onClick}
@@ -7,7 +9,7 @@ export default function NavButton({ icon: Icon, isActive = false, onClick }) {
         transition-all duration-200
         ${
           isActive
-            ? "bg-white text-blue-900 shadow-md"
+            ? "bg-blue-900 text-white shadow-lg scale-110"
             : "bg-white text-blue-900 hover:scale-105"
         }
       `}

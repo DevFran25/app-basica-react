@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";  
 import Sidebar from "@/components/layout/Sidebar";
 import { ChevronRight } from "lucide-react";
 import {
@@ -19,11 +19,12 @@ import Header from "@/components/layout/Header";
 import DashboardCard from "@/components/ui/DashboardCard";
 
 export default function Dashboard() {
-  const [activeRoute, setActiveRoute] = useState("home");
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  
-  const navigate = useNavigate()
-  const handleNavigate = (routeId) => setActiveRoute(routeId);
+
+  const location = useLocation();
+  const navigate = useNavigate();
+
+
 
   const CalendarioElectoral = () => {
     const items = [
@@ -64,7 +65,6 @@ export default function Dashboard() {
 const MiLugarVotacion = () => (
   <DashboardCard
   >
-    {/* Contenedor del título + botón */}
     <div className="flex items-center justify-between mb-3">
       <h3 className="font-semibold text-lg">Mi Lugar de Votación</h3>
       <button
@@ -158,7 +158,7 @@ const MiLugarVotacion = () => (
     <div className="flex min-h-screen bg-[#C4D2E0]">
 
       <div className={`fixed inset-y-0 left-0 z-20 transition-transform transform ${sidebarOpen ? "translate-x-0" : "-translate-x-full"} md:translate-x-0`}>
-        <Sidebar activeRoute={activeRoute} onNavigate={handleNavigate} className="h-full w-44" />
+        <Sidebar activeRoute={location.pathname} className="h-full w-44" />
       </div>
 
       <button

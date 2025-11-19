@@ -11,87 +11,72 @@ import {
   LogOut,
 } from "lucide-react";
 
-export default function Sidebar({ activeRoute = "home" }) {
+export default function Sidebar({ activeRoute = "/" }) {
   const navigate = useNavigate();
 
   const mainMenuItems = [
-    { id: "home", icon: Home, label: "Inicio", path: "/dashboard" },
+    { id: "/dashboard", icon: Home, label: "Inicio", path: "/dashboard" },
     {
-      id: "calendar",
+      id: "/calendario-electoral",
       icon: Calendar,
       label: "Calendario Electoral",
-      path: "/dashboard",
+      path: "/calendario-electoral",
     },
     {
-      id: "location",
+      id: "/lugar-de-votacion",
       icon: MapPin,
       label: "Mi Lugar de Votación",
-      path: "/dashboard",
+      path: "/lugar-de-votacion",
     },
     {
-      id: "users",
+      id: "/usuarios",
       icon: Users,
       label: "Usuarios",
-      path: "/dashboard",
+      path: "/usuarios",
     },
     {
-      id: "Documents",
+      id: "/documentos",
       icon: Document,
-      label: "FileText",
-      path: "/dashboard",
+      label: "Documentos",
+      path: "/documentos",
     },
     {
-      id: "settings",
+      id: "/configuracion",
       icon: Settings,
       label: "Configuración",
-      path: "/dashboard",
+      path: "/configuracion",
     },
   ];
 
-  const handleNavigate = (path) => {
-    navigate(path);
-  };
-
-  const handleLogout = () => {
-    navigate("/login");
-  };
-
   return (
     <aside
-     className="flex flex-col items-center 
-           bg-[#115691] 
-           rounded-3xl shadow-2xl py-4 sm:py-6
-           w-14 sm:w-16 md:w-20 lg:w-24  
-           min-h-screen transition-all duration-300
-           ml-2 sm:ml-2 md:ml-6 lg:ml-16"
-
+      className="flex flex-col items-center bg-[#115691] rounded-3xl shadow-2xl py-4 sm:py-6
+                 w-14 sm:w-16 md:w-20 lg:w-24 min-h-screen transition-all duration-300
+                 ml-2 sm:ml-2 md:ml-6 lg:ml-16"
     >
       {/* Logo */}
-      <div>
-        <Logo />
-      </div>
+      <Logo />
 
       {/* Nav Buttons */}
-      <nav className="flex flex-col items-center space-y-3 sm:space-y-4 md:space-y-5 flex-1">
+      <nav className="flex flex-col items-center space-y-4 flex-1">
         {mainMenuItems.map((item) => (
           <NavButton
             key={item.id}
             icon={item.icon}
-            isActive={activeRoute === item.id}
-            onClick={() => handleNavigate(item.path)}
+            isActive={activeRoute === item.id}   
+            onClick={() => navigate(item.path)}
           />
         ))}
       </nav>
 
-      {/* Logout Button */}
-      <div className="mt-auto pt-4 sm:pt-6">
+      {/* Logout */}
+      <div className="mt-auto pt-6">
         <button
-          className="w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full flex items-center justify-center 
+          className="w-12 h-12 bg-white rounded-full flex items-center justify-center 
                      text-blue-900 hover:scale-105 transition-all duration-200 shadow-md"
-          onClick={handleLogout}
+          onClick={() => navigate("/login")}
         >
-          <LogOut size={20} className="sm:hidden" strokeWidth={2.5} />
-          <LogOut size={24} className="hidden sm:block" strokeWidth={2.5} />
+          <LogOut size={24} strokeWidth={2.5} />
         </button>
       </div>
     </aside>
