@@ -9,8 +9,8 @@ export default function NavButton({ icon: Icon, route, activeRoute, onClick }) {
         transition-all duration-200
         ${
           isActive
-            ? "bg-blue-900 text-white shadow-lg scale-110"
-            : "bg-white text-blue-900 hover:scale-105"
+            ? "bg-white text-blue-900 hover:scale-105" 
+            : "bg-blue-900 text-white shadow-lg scale-110"
         }
       `}
     >
