@@ -5,7 +5,8 @@ Aplicación frontend de VotApp, construida con **React**, **Vite** y **TailwindC
 ## Instalación
 
 ```bash
-Clonar el repositorio:
+1.Clonar el repositorio:
+
 git clone <URL_DEL_REPOSITORIO>
 cd votapp-frontend
 
