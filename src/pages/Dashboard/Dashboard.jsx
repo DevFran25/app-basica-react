@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";  
 import Sidebar from "@/components/layout/Sidebar";
+import HamburgerButton from "@/components/ui/HamburgerButton";
 import { ChevronRight } from "lucide-react";
 import {
   Calendar,
@@ -161,12 +162,11 @@ const MiLugarVotacion = () => (
         <Sidebar activeRoute={location.pathname} className="h-full w-44" />
       </div>
 
-      <button
-        className="md:hidden fixed top-2 left-2 z-30 bg-white p-1 rounded shadow"
-        onClick={() => setSidebarOpen(!sidebarOpen)}
-      >
-        {sidebarOpen ? <X size={20} /> : <Menu size={20} />}
-      </button>
+      <HamburgerButton 
+          isOpen={sidebarOpen} 
+          onToggle={() => setSidebarOpen(!sidebarOpen)} 
+      />
+
 
       <main className="flex-1 flex items-center justify-center p-3 md:p-6">
         <div className="bg-white rounded-3xl shadow-lg w-full max-w-5xl p-4 sm:p-5 flex flex-col items-center gap-3">

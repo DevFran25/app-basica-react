@@ -3,6 +3,7 @@ import { ChevronLeft, FileText, AlertTriangle, ThumbsUp, BookOpen, MapPin, HelpC
 import Sidebar from "@/components/layout/Sidebar";
 import DashboardCard from "@/components/ui/DashboardCard";
 import lector from "@/assets/images/lector.png";
+import HamburgerButton from "@/components/ui/HamburgerButton";
 
 export default function GuiaLectorPage() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -32,6 +33,13 @@ export default function GuiaLectorPage() {
       <div className={`fixed inset-y-0 left-0 z-20 transition-transform transform ${sidebarOpen ? "translate-x-0" : "-translate-x-full"} md:translate-x-0`}>
         <Sidebar className="h-full w-44" />
       </div>
+
+      
+      {/* Botón hamburguesa */}
+      <HamburgerButton
+          isOpen={sidebarOpen}
+          onToggle={() => setSidebarOpen(!sidebarOpen)}
+      />
 
       {/* Main */}
       <main className="flex-1 p-4 md:p-6 flex justify-center">

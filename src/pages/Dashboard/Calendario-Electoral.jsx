@@ -3,6 +3,8 @@ import { UserCheck, BookOpen, Users, Timer } from "lucide-react";
 import Sidebar from "@/components/layout/Sidebar";
 import Header from "@/components/layout/Header";
 import DashboardCard from "@/components/ui/DashboardCard";
+import HamburgerButton from "@/components/ui/HamburgerButton";
+
 
 export default function CalendarioElectoralPage() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -60,6 +62,12 @@ export default function CalendarioElectoralPage() {
       >
         <Sidebar className="h-full w-44" />
       </div>
+
+      {/* Botón hamburguesa */}
+      <HamburgerButton
+        isOpen={sidebarOpen}
+        onToggle={() => setSidebarOpen(!sidebarOpen)}
+      />
 
       {/* Main */}
       <main className="flex-1 p-4 md:p-6 flex justify-center">

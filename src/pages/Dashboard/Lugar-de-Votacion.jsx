@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Sidebar from "@/components/layout/Sidebar";
 import DashboardCard from "@/components/ui/DashboardCard";
 import MiniMapa from "@/assets/images/mapa.png";
+import HamburgerButton from "@/components/ui/HamburgerButton";
 
 
 export default function LugarDeVotacionPage() {
@@ -21,6 +22,13 @@ export default function LugarDeVotacionPage() {
       >
         <Sidebar className="h-full w-44" />
       </div>
+
+      {/* Botón hamburguesa */}
+      <HamburgerButton
+          isOpen={sidebarOpen}
+          onToggle={() => setSidebarOpen(!sidebarOpen)}
+      />
+      
 
       {/* Main */}
     <main className="flex-1 pt-1 px-4 md:px-6 md:pt-2 flex justify-center">
