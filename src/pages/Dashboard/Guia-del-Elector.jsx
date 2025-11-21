@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { ChevronLeft, FileText, AlertTriangle, ThumbsUp, BookOpen, MapPin, HelpCircle } from "lucide-react";
 import Sidebar from "@/components/layout/Sidebar";
+import DashboardCard from "@/components/ui/DashboardCard";
 import lector from "@/assets/images/lector.png";
 
 export default function GuiaLectorPage() {
@@ -25,115 +26,88 @@ export default function GuiaLectorPage() {
   const [openFAQ, setOpenFAQ] = useState(null);
 
   return (
-     <div className="flex min-h-screen bg-[#C4D2E0]">
+    <div className="flex min-h-screen bg-[#C4D2E0]">
 
       {/* Sidebar */}
-      <div
-        className={`fixed inset-y-0 left-0 z-20 transition-transform transform ${
-          sidebarOpen ? "translate-x-0" : "-translate-x-full"
-        } md:translate-x-0`}
-      >
+      <div className={`fixed inset-y-0 left-0 z-20 transition-transform transform ${sidebarOpen ? "translate-x-0" : "-translate-x-full"} md:translate-x-0`}>
         <Sidebar className="h-full w-44" />
       </div>
 
       {/* Main */}
       <main className="flex-1 p-4 md:p-6 flex justify-center">
-        <div className="bg-white w-full max-w-4xl rounded-2xl shadow-lg p-5">
+        <div className="bg-white w-full max-w-4xl rounded-2xl shadow-lg p-5 flex flex-col items-center">
 
-          {/* Header */}
-          <div className="flex items-center gap-2 mb-4">
-            <button
-              onClick={() => history.back()}
-              className="p-2 hover:bg-gray-100 rounded-full"
-            >
-              <ChevronLeft size={22} />
-            </button>
-            <h1 className="text-xl font-bold">Calendario Electoral - Guía del Elector</h1>
-          </div>
+          {/* DashboardCard envuelve toda la guía */}
+          <DashboardCard title={<span className="text-white">Guía del Elector</span>} bg="#115691">
+            <div className="mt-3">
 
-          {/* Contenido superior */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-
-        
-           {/* Card azul */}
-            <div className="bg-blue-100 border border-blue-200 rounded-xl p-3 shadow-lg flex items-center justify-center">
-
-            <div className="flex flex-col">
-                {/* Caja Superior */}
-                <div className="bg-[#115691] text-white p-6 rounded-t-2xl">
-                <h3 className="text-lg font-semibold text-center">Guía del Elector Paso a paso</h3>
-                <p className="text-center">Descripción del primer paso…</p>
-                </div>
-
-                {/* Caja Inferior */}
-                <div className="bg-gray-100 text-black p-6 rounded-b-2xl">
-                <p className="text-center">Tu guía completa para un voto informado. Descubre el proceso electoral,
-                cómo votar y usar tu cédula.</p>
-                <button className="mt-4 bg-orange-500 text-white px-4 py-2 rounded-lg font-bold hover:bg-orange-600">
-                    Empezar Guía
+              {/* Header */}
+              <div className="flex items-center gap-2 mb-4">
+                <button onClick={() => history.back()} className="p-2 hover:bg-gray-100 rounded-full">
+                  <ChevronLeft size={22} />
                 </button>
-                </div>
-            </div>
-            </div>
-
-            {/* Card de imagen derecha */}
-            <div className="bg-blue-50 border border-blue-200 rounded-xl p-3 shadow-lg flex flex-col items-center justify-center">
-              <img
-                src={lector}
-                className="w-56 h-auto rounded-lg"
-              />
-              <span className="bg-orange-500 text-white text-xs px-3 py-1 mt-3 rounded-lg font-bold">
-                ¡NUEVO!
-              </span>
-            </div>
-
-          </div>
-
-          {/* Pasos clave */}
-          <h2 className="mt-8 text-lg font-bold text-gray-800">Pasos Clave Guía</h2>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 mt-3">
-            {pasos.map((item, index) => (
-              <div
-                key={index}
-                className="flex items-center gap-2 p-3 rounded-lg border border-blue-200 bg-blue-50 hover:shadow cursor-pointer"
-              >
-                <item.icon className="text-blue-700" size={22} />
-                <span className="text-sm font-semibold">{item.title}</span>
+                <h1 className="text-lg font-bold text-white">Calendario Electoral - Guía del Elector</h1>
               </div>
-            ))}
-          </div>
 
-          {/* FAQ */}
-          <h2 className="mt-8 text-lg font-bold text-gray-800">Preguntas Frecuentes (FAQs)</h2>
+              {/* Contenido superior */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
 
-          <div className="mt-3 space-y-3">
-            {faqs.map((faq, index) => (
-              <div
-                key={index}
-                className="border border-blue-200 rounded-lg bg-blue-50 p-3 cursor-pointer"
-                onClick={() => setOpenFAQ(openFAQ === index ? null : index)}
-              >
-                <div className="flex justify-between items-center">
-                  <div className="flex items-center gap-2">
-                    <HelpCircle className="text-blue-700" size={20} />
-                    <p className="font-semibold text-sm">{faq.question}</p>
+                {/* Card azul */}
+                <div className="bg-blue-100 border border-blue-200 rounded-xl p-3 shadow-lg flex items-center justify-center">
+                  <div className="flex flex-col">
+                    <div className="bg-[#115691] text-white p-6 rounded-t-2xl">
+                      <h3 className="text-lg font-semibold text-center">Guía del Elector Paso a paso</h3>
+                      <p className="text-center">Descripción del primer paso…</p>
+                    </div>
+                    <div className="bg-gray-100 text-black p-6 rounded-b-2xl">
+                      <p className="text-center">Tu guía completa para un voto informado. Descubre el proceso electoral,
+                        cómo votar y usar tu cédula.
+                      </p>
+                      <button className="mt-4 bg-orange-500 text-white px-4 py-2 rounded-lg font-bold hover:bg-orange-600">
+                        Empezar Guía
+                      </button>
+                    </div>
                   </div>
-
-                  <ChevronLeft
-                    size={20}
-                    className={`transition-transform ${
-                      openFAQ === index ? "-rotate-90" : "rotate-90"
-                    }`}
-                  />
                 </div>
 
-                {openFAQ === index && (
-                  <p className="text-sm text-gray-600 mt-2">{faq.answer}</p>
-                )}
+                {/* Imagen */}
+                <div className="bg-blue-50 border border-blue-200 rounded-xl p-3 shadow-lg flex flex-col items-center justify-center">
+                  <img src={lector} className="w-56 h-auto rounded-lg" />
+                  <span className="bg-orange-500 text-white text-xs px-3 py-1 mt-3 rounded-lg font-bold">¡NUEVO!</span>
+                </div>
+
               </div>
-            ))}
-          </div>
+
+              {/* Pasos */}
+              <h2 className="mt-8 text-lg font-bold text-white">Pasos Clave Guía</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 mt-3">
+                {pasos.map((item, index) => (
+                  <div key={index} className="flex items-center gap-2 p-3 rounded-lg border border-blue-200 bg-blue-50 hover:shadow cursor-pointer">
+                    <item.icon className="text-blue-700" size={22} />
+                    <span className="text-sm font-semibold">{item.title}</span>
+                  </div>
+                ))}
+              </div>
+
+              {/* FAQ */}
+              <h2 className="mt-8 text-lg font-bold text-white">Preguntas Frecuentes (FAQs)</h2>
+              <div className="mt-3 space-y-3">
+                {faqs.map((faq, index) => (
+                  <div key={index} className="border border-blue-200 rounded-lg bg-blue-50 p-3 cursor-pointer" onClick={() => setOpenFAQ(openFAQ === index ? null : index)}>
+                    <div className="flex justify-between items-center">
+                      <div className="flex items-center gap-2">
+                        <HelpCircle className="text-blue-700" size={20} />
+                        <p className="font-semibold text-sm">{faq.question}</p>
+                      </div>
+                      <ChevronLeft size={20} className={`transition-transform ${openFAQ === index ? "-rotate-90" : "rotate-90"}`} />
+                    </div>
+                    {openFAQ === index && <p className="text-sm text-gray-600 mt-2">{faq.answer}</p>}
+                  </div>
+                ))}
+              </div>
+
+            </div>
+          </DashboardCard>
 
         </div>
       </main>

@@ -35,7 +35,7 @@ export default function Dashboard() {
     ];
 
     return (
-    <DashboardCard   title={<span className="text-white">Calendario Electoral</span>}  bg="#3BB9CE">
+    <DashboardCard title={<span className="text-white">Calendario Electoral</span>}  bg="#3BB9CE">
       <div className="space-y-1.5">
         {items.map((item, i) => (
           <div
