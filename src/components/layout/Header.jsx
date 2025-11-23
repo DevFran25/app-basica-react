@@ -8,7 +8,7 @@ export default function Header({ title }) {
   return (
     <div className="mb-4 w-full">
       {isCalendar ? (
-        // ==== HEADER ESPECIAL PARA CALENDARIO ELECTORAL ====
+        // ==== HEADER  PARA CALENDARIO ELECTORAL ====
         <div className="flex items-center gap-2">
           {/* Botón de regreso */}
           <button

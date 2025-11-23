@@ -77,18 +77,22 @@ export default function CalendarioElectoralPage() {
           <Header title="Calendario Electoral" />
 
           {/* DashboardCard agregado */}
-          <DashboardCard title={<span className="text-white">Calendario Electoral</span>} bg="#3BB9CE">
+          <DashboardCard title={<span className="text-white"></span>} bg="transparent">
             <div className="mt-3 space-y-6">
               {sections.map((section, index) => (
                 <div key={index}>
-                  <h2 className="text-white font-bold text-sm mb-3">{section.title}</h2>
+                  <h2 className="font-bold text-sm mb-3" style={{ color: "#115691" }}>
+                    {section.title}
+                  </h2>
 
                   <div className="space-y-3">
                     {section.items.map((item, i) => (
                       <div
                         key={i}
-                        className="bg-white rounded-xl px-3 py-2 flex justify-between items-center shadow-md cursor-pointer hover:bg-gray-100 transition"
+                        className="bg-white rounded-xl px-6 py-5 flex justify-between items-center
+                                  shadow-md border border-gray-300 cursor-pointer hover:bg-gray-100 transition"
                       >
+
                         <div className="flex items-center gap-3">
                           <item.icon className="text-cyan-600" size={28} />
                           <div>
