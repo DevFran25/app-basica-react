@@ -3,14 +3,16 @@ import { ChevronLeft } from "lucide-react";
 
 export default function Header({ title }) {
   const navigate = useNavigate();
+
+  // Detecta tipos de páginas
+  const isGuide = title === "Calendario Electoral - Guía del Elector";
   const isCalendar = title === "Calendario Electoral";
 
   return (
     <div className="mb-4 w-full">
-      {isCalendar ? (
-        // ==== HEADER  PARA CALENDARIO ELECTORAL ====
+      {isGuide ? (
+        // ==== HEADER PARA GUÍA DEL ELECTOR====
         <div className="flex items-center gap-2">
-          {/* Botón de regreso */}
           <button
             onClick={() => navigate(-1)}
             className="p-2 rounded-lg hover:bg-gray-200 transition"
@@ -18,13 +20,26 @@ export default function Header({ title }) {
             <ChevronLeft size={22} />
           </button>
 
-          {/* Título alineado a la izquierda */}
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-800">
+            Calendario Electoral - Guía del Elector
+          </h1>
+        </div>
+      ) : isCalendar ? (
+        // ==== HEADER PARA CALENDARIO ELECTORAL ====
+        <div className="flex items-center gap-2">
+          <button
+            onClick={() => navigate(-1)}
+            className="p-2 rounded-lg hover:bg-gray-200 transition"
+          >
+            <ChevronLeft size={22} />
+          </button>
+
           <h1 className="text-xl sm:text-2xl font-bold text-gray-800">
             Calendario Electoral
           </h1>
         </div>
       ) : (
-        // ==== HEADER NORMAL (INICIO) ====
+        // ==== HEADER NORMAL ====
         <div className="flex flex-col items-center">
           <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-800 mb-2 text-center">
             {title}
