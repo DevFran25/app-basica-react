@@ -2,7 +2,6 @@
 
 Aplicación frontend de VotApp, construida con **React**, **Vite** y **TailwindCSS**.
 
-## Instalación
 
 ```bash
 1.Clonar el repositorio:
